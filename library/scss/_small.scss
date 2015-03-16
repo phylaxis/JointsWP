@@ -129,12 +129,9 @@ HEADER STYLES
 *********************/
 
 .header {
-	margin-bottom: 20px;
-		#inner-header {
-			li {
-				list-style: none;
-			}
-		}
+	ul.off-canvas-list li {
+		list-style: none;
+	}
 }
     
 /*********************
@@ -165,10 +162,8 @@ POSTS & CONTENT STYLES
 *********************/
 
 #content {
-	/*adds highlight on hover */
-	a:hover, a:focus {
-		background: $primary-color;
-		color: #fff;
+	#inner-content {
+		padding: 1rem 0rem;
 	}
 }
 

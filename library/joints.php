@@ -136,13 +136,6 @@ function joints_scripts_and_styles() {
     //adding scripts file in the footer
     wp_enqueue_script( 'joints-js', get_template_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), $theme_version, true );
 
-    /*
-    I recommend using a plugin to call jQuery
-    using the google cdn. That way it stays cached
-    and your site will load faster.
-    */
-    wp_enqueue_script( 'joints-js' );
-
   }
 }
 
@@ -351,6 +344,14 @@ function joints_excerpt_more($more) {
 	// edit here if you like
 return '...  <a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. __('Read', 'jointstheme') . get_the_title($post->ID).'">'. __('Read more &raquo;', 'jointstheme') .'</a>';
 }
+
+//  Stop WordPress from using the sticky class (which conflicts with Foundation), and style WordPress sticky posts using the .wp-sticky class instead
+function remove_sticky_class($classes) {
+	$classes = array_diff($classes, array("sticky"));
+	$classes[] = 'wp-sticky';
+	return $classes;
+}
+add_filter('post_class','remove_sticky_class');
 
 /*
  * This is a modified the_author_posts_link() which just returns the link.
